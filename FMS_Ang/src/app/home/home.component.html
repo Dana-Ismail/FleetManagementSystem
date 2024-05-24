@@ -1,0 +1,40 @@
+
+<div>
+  <h1>Vehicles</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>VehicleID</th>
+        <th>VehicleNumber</th>
+        <th>VehicleType</th>
+        <th>LastDirection</th>
+        <th>LastStatus</th>
+        <th>LastAddress</th>
+        <th>LastLatitude</th>
+        <th>LastLongitude</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr *ngFor="let vehicle of vehicles">
+        <td>{{ vehicle.VehicleID !== null ? vehicle.VehicleID : 'null' }}</td>
+        <td>{{ vehicle.VehicleNumber !== null ? vehicle.VehicleNumber : 'null' }}</td>
+        <td>{{ vehicle.VehicleType !== null ? vehicle.VehicleType : 'null' }}</td>
+        <td>{{ vehicle.LastDirection !== null ? vehicle.LastDirection : 'null' }}</td>
+        <td>{{ vehicle.LastStatus !== null ? vehicle.LastStatus : 'null' }}</td>
+        <td>{{ vehicle.LastAddress !== null ? vehicle.LastAddress : 'null' }}</td>
+        <td>{{ vehicle.LastLatitude !== null ? vehicle.LastLatitude : 'null' }}</td>
+        <td>{{ vehicle.LastLongitude !== null ? vehicle.LastLongitude : 'null' }}</td>
+        <td>
+          <button (click)="showMore(vehicle.VehicleID)">Show More</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-vehicle-detail *ngIf="showModal"
+                      [detailedVehicle]="detailedVehicle"
+                      [showModal]="showModal"
+                      (close)="closeModal()">
+  </app-vehicle-detail>
+
+</div>
