@@ -1,0 +1,55 @@
+<div>
+  <h1>Vehicle Management</h1>
+
+  <!-- Button to show the add form -->
+  <button (click)="showAddForm()">Add New Vehicle</button>
+
+  <!-- Add vehicle form -->
+  <div *ngIf="showAddFormFlag">
+    <h2>Add New Vehicle</h2>
+    <!-- Input fields for new vehicle -->
+    <input type="text" [(ngModel)]="newVehicleType" placeholder="Vehicle Type">
+    <input type="text" [(ngModel)]="newVehicleNumber" placeholder="Vehicle Number">
+    <button (click)="addVehicle()">Add Vehicle</button>
+  </div>
+
+  <!-- List of vehicles -->
+  <div *ngIf="vehicles.length > 0">
+    <h2>Vehicles</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Number</th>
+          <th>Action Update</th>
+          <th>Action Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehicle of vehicles">
+          <td>{{ vehicle.VehicleID }}</td>
+          <td>{{ vehicle.VehicleType }}</td>
+          <td>{{ vehicle.VehicleNumber }}</td>
+          <td>
+            <!-- Button to show update form -->
+            <button (click)="showUpdateForm(vehicle)">Update</button>
+          </td>
+          <td>
+            <!-- Button to delete vehicle -->
+            <button (click)="deleteVehicle(vehicle.VehicleID)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Update vehicle form -->
+  <div *ngIf="showUpdateFormFlag">
+    <h2>Update Vehicle</h2>
+    <!-- Input fields for updating vehicle -->
+    <input type="text" [(ngModel)]="selectedVehicle.VehicleType" placeholder="Vehicle Type">
+    <input type="text" [(ngModel)]="selectedVehicle.VehicleNumber" placeholder="Vehicle Number">
+    <button (click)="updateVehicle(selectedVehicle.VehicleID)">Update Vehicle</button>
+  </div>
+</div>
