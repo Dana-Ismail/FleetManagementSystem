@@ -76,7 +76,7 @@
         <td>{{ route.VehicleDirection }}</td>
         <td>{{ route.Status }}</td>
         <td>{{ route.VehicleSpeed }}</td>
-        <td>{{ route.GPSTime }}</td>
+        <td>{{ route.GPSTime * 1000 | date: 'medium' }}</td>
         <td>{{ route.Address }}</td>
         <td>{{ route.Latitude }}</td>
         <td>{{ route.Longitude }}</td>
