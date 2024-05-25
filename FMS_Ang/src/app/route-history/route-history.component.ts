@@ -53,6 +53,15 @@ export class RouteHistoryComponent implements OnInit {
     );
   }
 
+  showAddRouteForm(): void {
+    if (this.selectedVehicleID) {
+      this.showAddRouteFormFlag = true;
+      this.showRouteHistoryFlag = false;
+    } else {
+      console.error('Please select a valid vehicle ID');
+    }
+  }
+
   addRouteHistory(): void {
     const requestData = new GVAR();
     requestData.DicOfDic = {
@@ -74,7 +83,7 @@ export class RouteHistoryComponent implements OnInit {
         const responseObject = JSON.parse(responseJson);
         console.log(responseJson);
         console.log(responseObject);
-        if (responseObject.DicOfDic['Tags']['STS'] === '1') {
+        if (responseObject.dicOfDic['Tags']['STS'] === '1') {
           this.showAddRouteFormFlag = false;
           console.log('Route history added successfully');
         }
@@ -86,7 +95,7 @@ export class RouteHistoryComponent implements OnInit {
   }
 
   showRouteHistory(): void {
-    if (this.selectedVehicleID && this.epochFrom !== 0 && this.epochTo !== 0) {
+    if (this.selectedVehicleID && this.epochFrom && this.epochTo) {
       const requestData = new GVAR();
       requestData.DicOfDic = {
         Tags: {
@@ -116,5 +125,4 @@ export class RouteHistoryComponent implements OnInit {
       this.routeHistory = [];
     }
   }
-
 }
